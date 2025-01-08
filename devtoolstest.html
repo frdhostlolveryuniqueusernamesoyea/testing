@@ -1,14 +1,38 @@
 <body>
     <p>Devtools is <span id='test'>off</span></p>
     <script>
-        while (true) {
-            if ((window.outerHeight - window.innerHeight) > 100) {
-                document.getElementById('test').innerText = 'tetetetetest'
-                setTimeout(() => {
-                    console.log("World!");
-                }, 500); // Waits for 2 seconds before executing the function
-            }
+     (function() {
+    'use strict';
+    const el = new Image();
+    let consoleIsOpen = false;
+    let consoleOpened = false;
+
+    Object.defineProperty(el, 'id', {
+        get: () => {
+            consoleIsOpen = true;
         }
+    });
+
+    const verify = () => {
+        console.dir(el);
+        if (consoleIsOpen === false && consoleOpened === true) {
+            // console closed
+            window.dispatchEvent(new Event('devtools-opened'));
+            consoleOpened = false;
+        } else if (consoleIsOpen === true && consoleOpened === false) {
+            // console opened
+            window.dispatchEvent(new Event('devtools-closed'));
+            consoleOpened = true;
+        }
+        consoleIsOpen = false;
+        setTimeout(verify, 1000);
+
+    }
+
+    verify();
+})();
+window.addEventListener('devtools-opened', ()=>{console.log('opened')});
+window.addEventListener('devtools-closed', ()=>{console.log('closed')});
     </script>
     
     </body>
