@@ -1,44 +1,36 @@
-<body>
-    <p>Devtools is <span id='test'>off</span></p>
+<body id="testimk">
+    <p>Devtools is <span id='test'>this deos not fork</span></p>
     <script>
-     (function() {
-    'use strict';
-    const el = new Image();
-    let consoleIsOpen = false;
-    let consoleOpened = false;
-
-    Object.defineProperty(el, 'id', {
-        get: () => {
-            consoleIsOpen = true;
-        }
-    });
-
-    const verify = () => {
-        console.dir(el);
-        if (consoleIsOpen === false && consoleOpened === true) {
-            // console closed
-            window.dispatchEvent(new Event('devtools-opened'));
-            consoleOpened = false;
-        } else if (consoleIsOpen === true && consoleOpened === false) {
-            // console opened
-            window.dispatchEvent(new Event('devtools-closed'));
-            consoleOpened = true;
-        }
-        consoleIsOpen = false;
-        setTimeout(verify, 1000);
-
+!function() {
+  function detectDevTool(allow) {
+    if(isNaN(+allow)) allow = 100;
+    var start = +new Date(); // Validation of built-in Object tamper prevention.
+    debugger;
+    var end = +new Date(); // Validates too.
+    if(isNaN(start) || isNaN(end) || end - start > allow) {
+      // input your code here when devtools detected.
+      console.log('uHaveDevtols')
+      document.getElementById('testimk').innerHTML = 'tetetest'
     }
-
-    verify();
-})();
-while (true) {
-    if (consoleOpened == true) {
-        console.log(consoleOpened)
+  }
+  if(window.attachEvent) {
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        detectDevTool();
+      window.attachEvent('onresize', detectDevTool);
+      window.attachEvent('onmousemove', detectDevTool);
+      window.attachEvent('onfocus', detectDevTool);
+      window.attachEvent('onblur', detectDevTool);
+    } else {
+        setTimeout(argument.callee, 0);
     }
-    else if (consoleOpened == false) {
-        console.log(consoleOpened)
-    }
-}
+  } else {
+    window.addEventListener('load', detectDevTool);
+    window.addEventListener('resize', detectDevTool);
+    window.addEventListener('mousemove', detectDevTool);
+    window.addEventListener('focus', detectDevTool);
+    window.addEventListener('blur', detectDevTool);
+  }
+}();
     </script>
     
     </body>
