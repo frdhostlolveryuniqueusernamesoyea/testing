@@ -4,6 +4,9 @@
         while (true) {
             if ((window.outerHeight - window.innerHeight) > 100) {
                 document.getElementById('test').innerText = 'tetetetetest'
+                setTimeout(() => {
+                    console.log("World!");
+                }, 500); // Waits for 2 seconds before executing the function
             }
         }
     </script>
