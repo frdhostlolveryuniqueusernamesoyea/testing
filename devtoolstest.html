@@ -31,8 +31,14 @@
 
     verify();
 })();
-window.addEventListener('devtools-opened', ()=>{console.log('opened')});
-window.addEventListener('devtools-closed', ()=>{console.log('closed')});
+while (true) {
+    if (consoleOpened == true) {
+        console.log(consoleOpened)
+    }
+    else if (consoleOpened == false) {
+        console.log(consoleOpened)
+    }
+}
     </script>
     
     </body>
