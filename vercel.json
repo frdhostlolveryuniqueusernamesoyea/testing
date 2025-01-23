@@ -2,5 +2,10 @@
     "routes": [
       { "handle": "filesystem" },
       { "src": "/(.*)", "status": 404, "dest": "index.html" }
-    ]
+    ],
+    "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.8.4"
+    }
   }
+}
