@@ -1,36 +1,78 @@
-<body id="testimk">
-    <p>Devtools is <span id='test'>this deos not fork</span></p>
-    <script>
-!function() {
-  function detectDevTool(allow) {
-    if(isNaN(+allow)) allow = 100;
-    var start = +new Date(); // Validation of built-in Object tamper prevention.
-    debugger;
-    var end = +new Date(); // Validates too.
-    if(isNaN(start) || isNaN(end) || end - start > allow) {
-      // input your code here when devtools detected.
-      console.log('uHaveDevtols')
-      document.getElementById('testimk').innerHTML = 'tetetest'
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>devtools-detector demo</title>
+  <style>
+    .line {
+      margin-top: 10px;
+      text-align: center;
     }
-  }
-  if(window.attachEvent) {
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-        detectDevTool();
-      window.attachEvent('onresize', detectDevTool);
-      window.attachEvent('onmousemove', detectDevTool);
-      window.attachEvent('onfocus', detectDevTool);
-      window.attachEvent('onblur', detectDevTool);
-    } else {
-        setTimeout(argument.callee, 0);
+
+    #status {
+      margin-top: 50px;
+      font-size: 30px;
     }
-  } else {
-    window.addEventListener('load', detectDevTool);
-    window.addEventListener('resize', detectDevTool);
-    window.addEventListener('mousemove', detectDevTool);
-    window.addEventListener('focus', detectDevTool);
-    window.addEventListener('blur', detectDevTool);
-  }
-}();
-    </script>
-    
-    </body>
+
+    #checker {
+      color: brown;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="status" class="line">devtools status: open</div>
+  <div id="checker" class="line">performance</div>
+  <div class="line" style="color: blue">
+    <label for="crash">
+      If devtools is opened, let the current page to crash after two seconds
+    </label>
+    <input type="checkbox" id="crash">
+    (only tested on Chrome)
+  </div>
+  <div id="ua" class="line">UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0</div>
+  <div id="versionMap" class="line">Mozilla : 5.0 <br>AppleWebKit : 537.36 <br>Chrome : 132.0.0.0 <br>Safari : 537.36 <br>Edg : 132.0.0.0</div>
+  <div id="debug-info" class="line"></div>
+
+  <script src="https://blog.aepkill.com/demos/devtools-detector/promise-polyfill.js"></script>
+  <script src="https://blog.aepkill.com/demos/devtools-detector/devtools-detector.js"></script>
+  <script>
+    const status = document.getElementById('status');
+    const checker = document.getElementById('checker');
+    const ua = document.getElementById('ua');
+    const versionMap = document.getElementById('versionMap');
+    const crashCheckbox = document.getElementById('crash');
+
+    function maybeCrashBrowser() {
+      if (crashCheckbox.checked && devtoolsDetector.default.isOpen) {
+        setTimeout(devtoolsDetector.crashBrowserCurrentTab, 2000);
+      }
+    }
+
+    devtoolsDetector.addListener(function (isOpen, detail) {
+      if (isOpen) {
+        status.innerText = 'devtools status: open';
+        checker.innerText = detail.checkerName;
+      } else {
+        status.innerText = 'devtools status: close';
+        checker.innerText = '';
+      }
+
+      maybeCrashBrowser();
+    });
+
+    crashCheckbox.addEventListener('change', maybeCrashBrowser);
+    devtoolsDetector.launch();
+
+    ua.innerText = 'UserAgent: ' + navigator.userAgent;
+    versionMap.innerText = Object.keys(devtoolsDetector.versionMap)
+      .map(function (key) {
+        return key + ' : ' + devtoolsDetector.versionMap[key];
+      })
+      .join('\n');
+  </script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;90a2530db856f98a&quot;,&quot;version&quot;:&quot;2025.1.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;d16109921505450b8bc4be1beea862bf&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}}}" crossorigin="anonymous"></script>
+
+
+</body></html>
