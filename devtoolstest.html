@@ -22,6 +22,7 @@
 </head>
 
 <body>
+  <!--
   <div id="status" class="line">devtools status: closed</div>
   <div id="checker" class="line"></div>
   <div class="line" style="color: blue">
@@ -34,6 +35,7 @@
   <div id="ua" class="line">UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0</div>
   <div id="versionMap" class="line">Mozilla : 5.0 <br>AppleWebKit : 537.36 <br>Chrome : 132.0.0.0 <br>Safari : 537.36 <br>Edg : 132.0.0.0</div>
   <div id="debug-info" class="line"></div>
+  -->
 
   <script src="https://blog.aepkill.com/demos/devtools-detector/promise-polyfill.js"></script>
   <script src="https://blog.aepkill.com/demos/devtools-detector/devtools-detector.js"></script>
@@ -52,11 +54,12 @@
 
     devtoolsDetector.addListener(function (isOpen, detail) {
       if (isOpen) {
-        status.innerText = 'devtools status: open';
-        checker.innerText = detail.checkerName;
+        
+        //status.innerText = 'devtools status: open';
+        //checker.innerText = detail.checkerName;
       } else {
-        status.innerText = 'devtools status: close';
-        checker.innerText = '';
+        //status.innerText = 'devtools status: close';
+        //checker.innerText = '';
       }
 
       maybeCrashBrowser();
