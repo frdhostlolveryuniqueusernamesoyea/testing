@@ -36,10 +36,27 @@ function renderTable() {
 // Add new record
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+
     const domain = document.getElementById("domainInput").value;
     const ip = document.getElementById("ipInput").value;
     const ttl = document.getElementById("ttlInput").value;
     const status = document.getElementById("statusInput").value;
+
+    const response = await fetch("https://api.cloudflare.com/client/v4/zones/0fbb81973c7c183d622aecc1a5415b3e/dns_records", {
+        method: "POST",
+        body: JSON.stringify({ 
+            "comment": "test record from dnsdash",
+            "content": ip,
+            "name": domain,
+            "proxied": false,
+            "ttl": ttl,
+            "type": "A"
+         }),
+        headers: {
+            "Content-Type": "application/json",
+            "X-Auth-Key": "EEvO29SWUshpValP6wOvNEm01Fro30BBmxiKtOVe"
+        },
+    });
 
     dnsData.push({ domain, ip, ttl, status });
     renderTable();
