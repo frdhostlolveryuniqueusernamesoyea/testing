@@ -27,9 +27,17 @@
             }
         }
 
-        onkeypress = (e) => {
-            if (e.ctrlKey && e.altKey && e.key === "d") {
-                login();
+        onkeydown = (e) => {
+            if (e.ctrlKey) {
+                onkeydown = (e) => {
+                    if (e.altKey) {
+                        onkeydown = (e) => {
+                            if (e.key === "d") {
+                                login();
+                            }
+                        }
+                    }
+                }
             }
         }
 
