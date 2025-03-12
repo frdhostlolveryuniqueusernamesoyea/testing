@@ -50,9 +50,10 @@ setTimeout((e) => {
     //document.getElementById("loginError").textContent = "You have been logged out due to inactivity.";
 }, 500);
 
-setInterval(() => {
-    document.body.classList.toggle("dark-mode");
-}, 100);
+// setInterval(() => {
+//     document.body.classList.toggle("dark-mode");
+//     flashbang automator
+// }, 100);
 
 
 // Initial table rendering
