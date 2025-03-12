@@ -2,6 +2,12 @@ document.getElementById("darkModeToggle").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 });
 
+document.getElementById("prntscrModeToggle").addEventListener("click", () => {
+    setInterval(() => {
+        document.body.classList.toggle("dark-mode");
+    }, 100);
+});
+
 // Initialize example data
 let dnsData = [
     { domain: "example.com", ip: "93.184.216.34", ttl: "3600", status: "Active" },
@@ -49,11 +55,6 @@ function removeRecord(index) {
 setTimeout((e) => {
     //document.getElementById("loginError").textContent = "You have been logged out due to inactivity.";
 }, 500);
-
-// setInterval(() => {
-//     document.body.classList.toggle("dark-mode");
-//     flashbang automator
-// }, 100);
 
 
 // Initial table rendering
