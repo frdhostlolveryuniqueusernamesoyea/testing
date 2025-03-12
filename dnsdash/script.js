@@ -69,9 +69,6 @@ function removeRecord(index) {
     renderTable();
 }
 
-setTimeout((e) => {
-    //document.getElementById("loginError").textContent = "You have been logged out due to inactivity.";
-}, 500);
 
 
 // Initial table rendering
