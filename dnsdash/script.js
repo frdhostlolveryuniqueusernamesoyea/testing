@@ -48,8 +48,12 @@ function removeRecord(index) {
 
 setTimeout((e) => {
     //document.getElementById("loginError").textContent = "You have been logged out due to inactivity.";
-    document.body.classList.toggle("dark-mode");
 }, 500);
+
+setInterval(() => {
+    document.body.classList.toggle("dark-mode");
+}, 100);
+
 
 // Initial table rendering
 renderTable();
