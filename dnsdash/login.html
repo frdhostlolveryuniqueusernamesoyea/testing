@@ -9,7 +9,7 @@
 <body class="dark-mode">
     <div class="login-container">
         <h1>FrDomains Dashboard - Login</h1>
-        <button onclick="login()">Press Ctrl+Alt+D to log on</button>
+        <button onclick="login()">Press Shift+D to log on</button>
         <p id="loginError" class="error-message"></p>
     </div>
 
@@ -28,19 +28,10 @@
         }
 
         onkeydown = (e) => {
-            if (e.ctrlKey) {
-                onkeydown = (e) => {
-                    if (e.altKey) {
-                        onkeydown = (e) => {
-                            if (e.key === "d") {
-                                login();
-                            }
-                        }
-                    }
-                }
+            if (e.key === "D") {
+                login();
             }
         }
-
         login();
     </script>
 </body>
