@@ -9,7 +9,7 @@
 <body class="dark-mode">
     <div class="login-container">
         <h1>FrDomains Dashboard - Login</h1>
-        <button onclick="login()">Log On</button>
+        <button onclick="login()">Press Ctrl+Alt+D to log on</button>
         <p id="loginError" class="error-message"></p>
     </div>
 
@@ -26,6 +26,13 @@
                 document.getElementById("loginError").textContent = "Invalid username or password.";
             }
         }
+
+        onkeypress = (e) => {
+            if (e.ctrlKey && e.altKey && e.key === "d") {
+                login();
+            }
+        }
+
         login();
     </script>
 </body>
