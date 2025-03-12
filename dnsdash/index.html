@@ -12,6 +12,16 @@
         <button id="darkModeToggle">Toggle Dark Mode</button>
     </header>
     <main>
+        <form id="addRecordForm">
+            <input type="text" id="domainInput" placeholder="Domain" required>
+            <input type="text" id="ipInput" placeholder="IP Address" required>
+            <input type="number" id="ttlInput" placeholder="TTL" required>
+            <select id="statusInput">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+            <button type="submit">Add Record</button>
+        </form>
         <table>
             <thead>
                 <tr>
@@ -19,6 +29,7 @@
                     <th>IP Address</th>
                     <th>TTL</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="dnsTable">
