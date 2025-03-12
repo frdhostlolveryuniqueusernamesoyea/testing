@@ -48,9 +48,7 @@ function removeRecord(index) {
 
 setTimeout((e) => {
     //document.getElementById("loginError").textContent = "You have been logged out due to inactivity.";
-    while (true) {
     document.body.classList.toggle("dark-mode");
-    }
 }, 500);
 
 // Initial table rendering
