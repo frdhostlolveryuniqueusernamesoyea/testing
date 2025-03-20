@@ -1,0 +1,73 @@
+body {
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    background-color: #1e1e2e;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+.header {
+    font-size: 2.5em;
+    margin-top: 20px;
+}
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn:hover {
+    background-color: #367e3a;
+    transform: rotate(15deg) scale(1.5);
+}
+.server-info {
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+.features {
+    margin-top: 30px;
+}
+.feature {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 15px;
+}
+.footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff9800;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+.progress-bar {
+    height: 5px;
+    background-color: #fff;
+    width: 100%;
+    transition: width 5s linear;
+}
